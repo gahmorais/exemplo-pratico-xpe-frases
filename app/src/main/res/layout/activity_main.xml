@@ -22,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/margem_padrao"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/list_item_frases"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-
+        android:id="@+id/tvMensagemListaVazia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/erro_sem_frases"
