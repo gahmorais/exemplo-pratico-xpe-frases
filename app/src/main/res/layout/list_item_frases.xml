@@ -24,6 +24,7 @@
             tools:text="@tools:sample/full_names" />
 
         <TextView
+            android:id="@+id/tvFrase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

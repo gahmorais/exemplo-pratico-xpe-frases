@@ -1,34 +1,36 @@
 package br.com.gabrielmorais.frases.ui.main
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.gabrielmorais.frases.data.Frase
 import br.com.gabrielmorais.frases.data.repositorio.MemoryRepository
 
 class MainViewModel : ViewModel() {
-    private val memoryRepository: MemoryRepository by lazy {
-        MemoryRepository(mutableListOf())
-    }
-    private val _listaDeFrases = MutableLiveData<List<Frase>>()
+  private val memoryRepository: MemoryRepository by lazy {
+    MemoryRepository(mutableListOf())
+  }
+  private val _listaDeFrases = MutableLiveData<List<Frase>>()
+  val listaDeFrases: LiveData<List<Frase>> = _listaDeFrases
 
-    fun iniciarDados() {
-        atualizarListaDeFrases()
-    }
+  fun iniciarDados() {
+    atualizarListaDeFrases()
+  }
 
-    fun salvarFrase(frase: Frase) {
-        Log.i("IGTI Info", "Frase recebida:  $frase")
-        memoryRepository.salvar(frase)
+  fun salvarFrase(frase: Frase) {
+    Log.i("IGTI Info", "Frase recebida:  $frase")
+    memoryRepository.salvar(frase)
+    atualizarListaDeFrases()
+  }
 
-    }
+  fun atualizarListaDeFrases() {
+    _listaDeFrases.value = memoryRepository.retornarLista()
+  }
 
-    fun atualizarListaDeFrases() {
-        _listaDeFrases.value = memoryRepository.retornarLista()
-    }
-
-    fun limparListaDeFrases() {
-        Log.i("IGTI Info", "Iniciando processo de limpeza do repositório")
-        memoryRepository.limparLista()
-        atualizarListaDeFrases()
-    }
+  fun limparListaDeFrases() {
+    Log.i("IGTI Info", "Iniciando processo de limpeza do repositório")
+    memoryRepository.limparLista()
+    atualizarListaDeFrases()
+  }
 }
