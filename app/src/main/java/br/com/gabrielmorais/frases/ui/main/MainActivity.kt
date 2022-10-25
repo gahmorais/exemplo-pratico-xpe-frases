@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         if (activityResult.resultCode == RESULT_OK) {
             activityResult.data?.let {
                 if (it.hasExtra(RETORNO)) {
-                    val frase = it.getParcelableExtra<Frase>(RETORNO)
-                    Log.i("IGTI Info", "Autor: ${frase?.autor}  Frase: ${frase?.frase}")
                 }
             }
         } else {
