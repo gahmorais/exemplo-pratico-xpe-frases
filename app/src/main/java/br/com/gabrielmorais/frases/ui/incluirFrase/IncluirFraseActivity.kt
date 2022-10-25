@@ -1,11 +1,14 @@
 package br.com.gabrielmorais.frases.ui.incluirFrase
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.isEmpty
 import br.com.gabrielmorais.frases.R
+import br.com.gabrielmorais.frases.data.Frase
 import br.com.gabrielmorais.frases.databinding.ActivityIncluirFraseBinding
+import br.com.gabrielmorais.frases.ui.main.MainActivity
 
 class IncluirFraseActivity : AppCompatActivity() {
     lateinit var binding: ActivityIncluirFraseBinding
@@ -46,14 +49,12 @@ class IncluirFraseActivity : AppCompatActivity() {
             }
 
             if (autor.isNotEmpty() && frase.isNotEmpty()) {
-                Toast.makeText(
-                    applicationContext,
-                    "Autor: $autor Frase: $frase",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Intent().apply {
+                    putExtra(MainActivity.RETORNO, Frase(autor = autor, frase = frase))
+                    setResult(RESULT_OK, this)
+                }
                 finish()
             }
-
         }
     }
 
